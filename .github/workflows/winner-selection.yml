@@ -9,7 +9,7 @@ on:
         required: true
         type: choice
         options:
-          - "No raffles available yet"
+          - "#1 - EkoParty Test"
 
 jobs:
   pick-winners:
