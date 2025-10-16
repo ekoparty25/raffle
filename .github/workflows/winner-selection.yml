@@ -9,7 +9,8 @@ on:
         required: true
         type: choice
         options:
-          - "#1 - EkoParty Test"
+          - "#2 - EkoParty - Miercoles"
+          - "#3 - EkoParty - Jueves"
 
 jobs:
   pick-winners:
