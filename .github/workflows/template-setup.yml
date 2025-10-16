@@ -1,0 +1,44 @@
+name: "Template Setup"
+
+on:
+  push:
+    branches: [main, master]
+  create:
+
+jobs:
+  setup-template:
+    # Only run if this is a new repository created from template
+    if: github.run_number <= 3 && github.repository != 'gittogethers/raffle'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+      issues: write
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: "Check if setup is needed"
+        id: check_setup
+        run: |
+          # Check if this repository still has template references
+          if grep -q "gittogethers/raffle" README.md; then
+            echo "setup_needed=true" >> $GITHUB_OUTPUT
+            echo "Repository needs configuration"
+          else
+            echo "setup_needed=false" >> $GITHUB_OUTPUT
+            echo "Repository already configured"
+          fi
+
+      - name: "Setup Node.js"
+        if: steps.check_setup.outputs.setup_needed == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: "Configure Repository"
+        if: steps.check_setup.outputs.setup_needed == 'true'
+        run: node .github/workflows/template-setup.js

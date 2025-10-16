@@ -1,0 +1,2 @@
+# This file prevents users from creating blank issues and directs them to the issue template.
+blank_issues_enabled: false

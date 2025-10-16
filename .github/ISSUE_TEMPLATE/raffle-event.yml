@@ -1,0 +1,32 @@
+
+name: "🎉 New Raffle Event"
+description: "Set up a new raffle for your community"
+title: "Don't Change - Will Update Automatically"
+body:
+  - type: markdown
+    attributes:
+      value: "## Raffle Event Details"
+  - type: input
+    id: event-name
+    attributes:
+      label: "Event Name"
+      description: "What is the name of this event or raffle?"
+      placeholder: "e.g., Community Meetup Q2"
+    validations:
+      required: true
+  - type: input
+    id: num-winners
+    attributes:
+      label: "Number of Winners"
+      description: "How many winners will be selected?"
+      placeholder: "e.g., 3"
+    validations:
+      required: true
+  - type: textarea
+    id: prizes
+    attributes:
+      label: "Prize Details"
+      description: "Describe the prize(s) for the winners."
+      placeholder: "e.g., 1st place gets a t-shirt, 2nd and 3rd get stickers."
+    validations:
+      required: true
