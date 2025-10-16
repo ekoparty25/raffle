@@ -35,7 +35,7 @@ const numWinnersMatch = issue.body.match(numWinnersRegex);
 let numWinners;
 if (!numWinnersMatch) {
   // Try alternative format in case of different rendering
-  const altRegex = /Number of Winners[\*]{,2}[:\s]*(\d+)/i;
+  const altRegex = /Number of Winners[\*]{0,2}[:\s]*(\d+)/i;
   const altMatch = issue.body.match(altRegex);
   if (!altMatch) {
     core.setFailed("Could not determine the number of winners from the issue body. Please ensure the issue was created using the raffle template.");
